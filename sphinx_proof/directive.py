@@ -122,12 +122,30 @@ class ProofDirective(SphinxDirective):
         if class_name:
             classes.extend(class_name)
 
-        section = nodes.admonition(classes=classes, ids=[typ])
+        if not self.env.config.proof_env_like_thm_env:
+            section = nodes.admonition(classes=classes, ids=[typ])
 
-        self.content[0] = "{}. ".format(typ.title()) + self.content[0]
-        self.state.nested_parse(self.content, 0, section)
+            self.content[0] = "{}. ".format(typ.title()) + self.content[0]
+            self.state.nested_parse(self.content, 0, section)
 
-        node = proof_node()
-        node += section
+            node = proof_node()
+            node += section
+        else:
+            section = nodes.section(classes=[f"{typ}-content"], ids=["proof-content"])
+            self.state.nested_parse(self.content, self.content_offset, section)
+            node = proof_node()
+
+            title_text = ""
+            #if self.arguments != []: #Current tests don't allow proof titles
+            #    title_text += f" ({self.arguments[0]})"
+            textnodes, messages = self.state.inline_text(title_text, self.lineno)
+
+            node += nodes.title(title_text, "", *textnodes)
+            node += section
+
+            node["makeprooftitle"]=True
+
+            node["classes"].extend(classes)
+
 
         return [node]

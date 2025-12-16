@@ -13,6 +13,7 @@ from docutils.nodes import Node
 from sphinx.writers.latex import LaTeXTranslator
 from sphinx.locale import get_translation
 
+
 MESSAGE_CATALOG_NAME = "proof"
 _ = get_translation(MESSAGE_CATALOG_NAME)
 
@@ -72,11 +73,29 @@ def depart_unenumerable_node(self, node: Node) -> None:
 
 
 def visit_proof_node(self, node: Node) -> None:
-    pass
+    if not node.get('makeprooftitle')==True:     
+        pass
+    else:
+        if isinstance(self, LaTeXTranslator):
+            self.body.append(latex_admonition_start)
+        else:
+            self.body.append(self.starttag(node, "div", CLASS="admonition"))
+
 
 
 def depart_proof_node(self, node: Node) -> None:
-    pass
+    if not node.get('makeprooftitle')==True:     
+        pass
+    else:
+        if isinstance(self, LaTeXTranslator):
+            idx = list_rindex(self.body, latex_admonition_start) + 2
+            self.body.insert(idx, "Proof.")
+            self.body.append(latex_admonition_end)
+        else:
+            idx = list_rindex(self.body, '<p class="admonition-title">') + 1
+            element = "<span>Proof.</span>"
+            self.body.insert(idx, element)
+            self.body.append("</div>")
 
 
 def get_node_number(self, node: Node, typ) -> str:

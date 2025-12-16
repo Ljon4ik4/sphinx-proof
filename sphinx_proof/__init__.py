@@ -82,6 +82,8 @@ def setup(app: Sphinx) -> Dict[str, Any]:
 
     app.add_config_value("proof_minimal_theme", False, "html")
 
+    app.add_config_value("proof_env_like_thm_env", False, "html")
+
     app.add_css_file("proof.css")
     app.connect("build-finished", copy_asset_files)
     app.connect("config-inited", init_numfig)
