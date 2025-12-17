@@ -1,0 +1,6 @@
+[
+    {"language":"English","symbol":"en","text":"Proof"},
+    {"language":"French","symbol":"fr","text":"Démonstration"},
+    {"language":"German","symbol":"de","text":"Beweis"},
+    {"language":"Russian","symbol":"ru","text":"Доказательство"}
+]

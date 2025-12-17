@@ -36,7 +36,7 @@ def depart_enumerable_node(self, node: Node) -> None:
     if isinstance(self, LaTeXTranslator):
         number = get_node_number(self, node, typ)
         idx = list_rindex(self.body, latex_admonition_start) + 2
-        self.body.insert(idx, f"{typ.title()} {number}")
+        self.body.insert(idx, f"{typ.title()} {number}") #TODO: THIS IS NOT LOCALIZED - WHY? SAME for unenumerable and proof
         self.body.append(latex_admonition_end)
     else:
         # Find index in list of 'Proof #'
@@ -87,13 +87,14 @@ def depart_proof_node(self, node: Node) -> None:
     if not node.get('makeprooftitle')==True:     
         pass
     else:
+        title_text = "proof"
         if isinstance(self, LaTeXTranslator):
             idx = list_rindex(self.body, latex_admonition_start) + 2
-            self.body.insert(idx, "Proof.")
+            self.body.insert(idx, f"{title_text.title()}.")
             self.body.append(latex_admonition_end)
         else:
             idx = list_rindex(self.body, '<p class="admonition-title">') + 1
-            element = "<span>Proof.</span>"
+            element = f"<span>{_(title_text.title())}.</span>"
             self.body.insert(idx, element)
             self.body.append("</div>")
 
