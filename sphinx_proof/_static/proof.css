@@ -205,3 +205,15 @@ div.assumption {
 div.assumption p.admonition-title {
 	background-color: var(--hint-title-color);
 }
+
+/*********************************************
+* headedproof *
+*********************************************/
+div.headedproof {
+	border-color: var(--grey-border-color);
+	background-color: var(--grey-title-color);
+}
+
+div.headedproof p.admonition-title {
+	background-color: var(--grey-title-color);
+}

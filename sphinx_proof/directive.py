@@ -146,6 +146,8 @@ class ProofDirective(SphinxDirective):
             node["makeprooftitle"]=True
 
             node["classes"].extend(classes)
+            node["classes"].extend(["headedproof"])
+            
 
 
         return [node]

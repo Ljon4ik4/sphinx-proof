@@ -220,3 +220,16 @@ div.assumption {
 div.assumption > .admonition-title {
 	background-color: transparent;
 }
+
+/*********************************************
+* Headedproof *
+*********************************************/
+div.headedproof {
+	border: none;
+	background-color: none;
+}
+
+div.headedproof > .admonition-title {
+	background-color: transparent;
+}
+
