@@ -1,17 +1,18 @@
 import shutil
 import pytest
 
-from sphinx.testing.path import path
+#from sphinx.testing.path import path
+from pathlib import Path
 
 pytest_plugins = "sphinx.testing.fixtures"
 
 
 @pytest.fixture
 def rootdir(tmpdir):
-    src = path(__file__).parent.abspath() / "books"
+    src = Path(__file__).resolve().parent / "books"
     dst = tmpdir.join("books")
     shutil.copytree(src, dst)
-    books = path(dst)
+    books = Path(dst)
     yield books
     shutil.rmtree(dst)
 

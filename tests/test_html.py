@@ -74,7 +74,7 @@ def test_proof(app, idir, file_regression):
     # get content markup
     soup = BeautifulSoup(path_proof_directive.read_text(encoding="utf8"), "html.parser")
 
-    proof = soup.select("div.proof")[0]
+    proof = soup.select("div.proof_env")[0]
     file_regression.check(str(proof), basename=idir.split(".")[0], extension=".html")
 
 
@@ -95,5 +95,5 @@ def test_numbering(app, idir, file_regression):
 
     # get content markup
     soup = BeautifulSoup(path_directive.read_text(encoding="utf8"), "html.parser")
-    proof = soup.select("div.proof")[0]
+    proof = soup.select("div.proof_env")[0]
     file_regression.check(str(proof), basename=idir.split(".")[0], extension=".html")

@@ -19,14 +19,14 @@
 *********************************************/
 
 /* Remove content box */
-div.proof p.admonition-title::before {
+div.proof_env p.admonition-title::before {
 	content: none;
 }
 
 /*********************************************
 * Proof *
 *********************************************/
-div#proof{
+div.proof{
 	padding: .4rem .6rem .4rem 2rem !important;
 	border-color: var(--grey-border-color);
 	background-color: none;

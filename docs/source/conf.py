@@ -52,9 +52,11 @@ html_theme_options = {
 
 # sphinx-proof extension options
 proof_minimal_theme = False
+proof_uniform_numbering = False
+headerless_type_list = ["proof",]
+nonumber_type_list = ["proof",]
+
 
 # MyST Parser Configuration
 
 myst_enable_extensions = ["dollarmath", "amsmath"]
-
-proof_uniform_numbering = True

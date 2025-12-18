@@ -21,9 +21,13 @@ from sphinx.util.nodes import make_refnode
 from sphinx.util import logging
 from sphinx.locale import get_translation
 from docutils import nodes
-from .directive import ProofDirective
-from .proof_type import PROOF_TYPES
+
 from copy import copy
+
+import os
+from pathlib import Path
+
+from .directive_generator import DIRECTIVE_TYPES
 
 logger = logging.getLogger(__name__)
 
@@ -83,7 +87,7 @@ class ProofDomain(Domain):
 
     indices = {ProofIndex}  # a list of index subclasses
 
-    directives = {**{"proof": ProofDirective}, **PROOF_TYPES}  # list of directives
+    directives = {**DIRECTIVE_TYPES}  # list of directives
 
     enumerable_nodes = {}  # type: Dict[[Node], Tuple[str, Callable]]
 
@@ -146,9 +150,11 @@ class ProofDomain(Domain):
             try:
                 match = env.proof_list[target]
             except Exception:
-                path = self.env.doc2path(fromdocname)[:-3]
+                #path = self.env.doc2path(fromdocname)[:-3] sphinx 9 deprecation warning, so:
+                path = Path(self.env.doc2path(fromdocname))
+                location = os.fspath(path.with_suffix(""))
                 msg = "label '{}' not found.".format(target)
-                logger.warning(msg, location=path, color="red")
+                logger.warning(msg, location=location, color="red")
                 return None
 
             todocname = match["docname"]

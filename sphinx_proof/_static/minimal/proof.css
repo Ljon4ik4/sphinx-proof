@@ -34,14 +34,14 @@
 *********************************************/
 
 /* Remove content box */
-div.proof > .admonition-title::before {
+div.proof_env > .admonition-title::before {
 	content: none;
 }
 
 /*********************************************
 * Proof *
 *********************************************/
-div#proof{
+div.proof{
 	padding: .4rem .6rem .4rem 2rem !important;
 	border-color: var(--grey-border-color);
 	background-color: none;

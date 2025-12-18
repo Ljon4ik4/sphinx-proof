@@ -93,6 +93,7 @@ A theorem directive can be included using the `prf:theorem` pattern. The directi
 
 ````{prf:theorem} Orthogonal-Projection-Theorem
 :label: my-theorem
+:nonumber:
 
 Given $y \in \mathbb R^n$ and linear subspace $S \subset \mathbb R^n$,
 there exists a unique solution to the minimization problem

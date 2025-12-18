@@ -12,19 +12,17 @@ from sphinx.config import Config
 from sphinx.application import Sphinx
 from sphinx.locale import get_translation
 from sphinx.environment import BuildEnvironment
-from .nodes import visit_enumerable_node, depart_enumerable_node
-from .nodes import (
-    NODE_TYPES,
-    unenumerable_node,
-    visit_unenumerable_node,
-    depart_unenumerable_node,
-)
-from .nodes import proof_node, visit_proof_node, depart_proof_node
-from .domain import ProofDomain
-from .proof_type import PROOF_TYPES
+
 from sphinx.util import logging
 from sphinx.util.fileutil import copy_asset
 
+from .node_visiting import visit_node_html, visit_node_latex, depart_node_latex, depart_node_html, do_nothing
+
+from .node_generator import NODE_TYPES, proof_node, unenumerable_node, headless_node
+from .node_generator import DEFAULT_HEADERLESS_TYPE_LIST, DEFAULT_NONUMBER_TYPE_LIST
+
+from .domain import ProofDomain
+from .directive_generator import DIRECTIVE_TYPES
 logger = logging.getLogger(__name__)
 MESSAGE_CATALOG_NAME = "proof"
 _ = get_translation(MESSAGE_CATALOG_NAME)
@@ -82,6 +80,8 @@ def setup(app: Sphinx) -> Dict[str, Any]:
 
     app.add_config_value("proof_minimal_theme", False, "html")
     app.add_config_value("proof_uniform_numbering", False, "env")
+    app.add_config_value("nonumber_type_list", DEFAULT_NONUMBER_TYPE_LIST, "env")
+    app.add_config_value("headerless_type_list", DEFAULT_HEADERLESS_TYPE_LIST, "env")
 
     app.add_css_file("proof.css")
     app.connect("build-finished", copy_asset_files)
@@ -96,22 +96,24 @@ def setup(app: Sphinx) -> Dict[str, Any]:
 
     app.add_domain(ProofDomain)
     app.add_node(
-        proof_node,
-        html=(visit_proof_node, depart_proof_node),
-        latex=(visit_proof_node, depart_proof_node),
-    )
-    app.add_node(
         unenumerable_node,
-        html=(visit_unenumerable_node, depart_unenumerable_node),
-        latex=(visit_unenumerable_node, depart_unenumerable_node),
+        html=(visit_node_html, depart_node_html),
+        latex=(visit_node_latex, depart_node_latex),
     )
-    for node in PROOF_TYPES.keys():
+
+    app.add_node(
+        headless_node,
+        html=(do_nothing, do_nothing),
+        latex=(do_nothing, do_nothing),
+    )
+
+    for node in DIRECTIVE_TYPES.keys():
         app.add_enumerable_node(
             NODE_TYPES[node],
             node,
             None,
-            html=(visit_enumerable_node, depart_enumerable_node),
-            latex=(visit_enumerable_node, depart_enumerable_node),
+            html=(visit_node_html, depart_node_html),
+            latex=(visit_node_latex, depart_node_latex),
         )
 
     return {

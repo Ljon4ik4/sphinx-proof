@@ -42,12 +42,27 @@ This can be changed to a common counter by setting the option `proof_uniform_num
 Add `proof_uniform_numbering = True` to your `conf.py`
 
 
-### Jupyter Book Project
+## Types without a number by default
 
-Add `proof_uniform_numbering = True` to your `_config.yml` (untested)
+By default only the `prf:proof` is unnumbered. The list of unnumbered types can be set by `nonumber_type_list` 
 
-```yaml
-sphinx:
-  config:
-    proof_uniform_numbering: true
+### Sphinx Project
+
+Add e.g. `nonumber_type_list = ["proof", "example", ...]` to your `conf.py`
+
+
+
+## Types without a Title line
+
+By default only the `prf:proof` has no title line. The list of such headless types can be set by `headerless_type_list` 
+
+### Sphinx Project
+
+For instance, if one wants proofs to have a headline, e.g. to make them collapsible, add `nonumber_type_list = []` to your `conf.py`.
+
+```{prf:remark} 
+:nonumber:
+
+Anything headless will automatically be unnumbered. (at least in the html output)
 ```
+
