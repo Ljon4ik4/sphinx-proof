@@ -6,6 +6,44 @@
 [![pre-commit.ci status](https://results.pre-commit.ci/badge/github/executablebooks/sphinx-proof/main.svg)](https://results.pre-commit.ci/latest/github/executablebooks/sphinx-proof/main)
 
 
+## Rewrite
+
+### New features
+
+This branch contains a significantly rewritten version.
+New features added:
+- one can choose between numbering per-proof-type and uniform numbering 
+- one can manage a list of types which have no number by default (usually only proof)
+- one can manage a list of types which are headless (no admonition title) by default (usually only proof) 
+
+This potentially answers the issues
+- [86](https://github.com/executablebooks/sphinx-proof/issues/86)
+- [64](https://github.com/executablebooks/sphinx-proof/issues/64)
+
+
+### Disclaimer
+
+I tried doing this (with an automated coding assistance employed on individual lines) and without a deep understanding how sphinx works, so be cautious. I am sure none of the changes are 'malicious' and it now passes the tests, but that's all I can say....
+
+
+### Under the hood
+
+- I tried changing the naming of things to be more self-explanatory, so less things are called 'proof' now in the codebase,
+
+- the classes that are necessary are now automatically generated from a list. This makes creating new theorem-kinds easier. (change necessary just in one file `node_generator.py` and potentially in the css files for custom design).
+
+- It should now be easy to add the possibility for custom environment types, one simply needs to create some dummy ones e.g. "dummy1",...,"dummy13" to the `PROOF_TYPE_LIST` in `node_generator.py` and add some programming logic in `directive.py` so map certain `realtypes` to these `countertypes`. (This could be done by allowing users to provide a dictionary for the mapping and then using that. Such a dictionary could be `{"challenge" : "dummy1", ...}`).
+
+- By the same method it should be possible to have more advanced counting setup (e.g. one counter for defs , one for lemmas, theorems, propositions, one for axioms).
+
+### Missing things
+
+- localization to translate the word proof is missing
+- the documentation has not been systematically adapted
+- css styling might differ a little from the previous one and could also be improved
+- only existing tests were adapted, no new tests were created
+
+
 **A proof extension for Sphinx**.
 
 This package contains a [Sphinx](http://www.sphinx-doc.org/) extension
