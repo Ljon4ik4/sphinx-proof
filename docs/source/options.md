@@ -60,6 +60,3 @@ prf_realtyp_to_countertyp = {
     "notation": "theorem",
 }
 ```
-
-
-

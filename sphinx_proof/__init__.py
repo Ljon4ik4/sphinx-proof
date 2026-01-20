@@ -78,7 +78,6 @@ def copy_asset_files(app: Sphinx, exc: Union[bool, Exception]):
             copy_asset(path, str(Path(app.outdir).joinpath("_static").absolute()))
 
 
-
 realtyp_to_countertyp = {
     "axiom": "axiom",
     "theorem": "theorem",
@@ -96,7 +95,6 @@ realtyp_to_countertyp = {
     "assumption": "assumption",
     "notation": "notation",
 }
-
 
 
 def setup(app: Sphinx) -> Dict[str, Any]:
