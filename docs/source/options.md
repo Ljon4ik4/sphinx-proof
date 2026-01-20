@@ -35,19 +35,31 @@ Add `proof_minimal_theme = True` to your `conf.py`
 ## Shared numbering
 
 By default, each type of theorem has their own numbering and counter.
-This can be changed to a common counter by setting the option `proof_uniform_numbering` to true.
+This can be changed to a common counter by setting the option `prf_realtyp_to_countertyp` to a dictionary associating to each prf-type which prf-type's counter it should use.
 
 ### Sphinx Project
 
-Add `proof_uniform_numbering = True` to your `conf.py`
+In `conf.py`, e.g. to have a shared counter for all prf-types:
 
-
-### Jupyter Book Project
-
-Add `proof_uniform_numbering = True` to your `_config.yml` (untested)
-
-```yaml
-sphinx:
-  config:
-    proof_uniform_numbering: true
 ```
+prf_realtyp_to_countertyp = {
+    "axiom": "theorem",
+    "theorem": "theorem",
+    "lemma": "theorem",
+    "algorithm": "theorem",
+    "definition": "theorem",
+    "remark": "theorem",
+    "conjecture": "theorem",
+    "corollary": "theorem",
+    "criterion": "theorem",
+    "example": "theorem",
+    "property": "theorem",
+    "observation": "theorem",
+    "proposition": "theorem",
+    "assumption": "theorem",
+    "notation": "theorem",
+}
+```
+
+
+

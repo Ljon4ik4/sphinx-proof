@@ -57,4 +57,20 @@ proof_minimal_theme = False
 
 myst_enable_extensions = ["dollarmath", "amsmath"]
 
-proof_uniform_numbering = True
+prf_realtyp_to_countertyp = {
+    "axiom": "theorem",
+    "theorem": "theorem",
+    "lemma": "theorem",
+    "algorithm": "theorem",
+    "definition": "theorem",
+    "remark": "theorem",
+    "conjecture": "theorem",
+    "corollary": "theorem",
+    "criterion": "theorem",
+    "example": "theorem",
+    "property": "theorem",
+    "observation": "theorem",
+    "proposition": "theorem",
+    "assumption": "theorem",
+    "notation": "theorem",
+}

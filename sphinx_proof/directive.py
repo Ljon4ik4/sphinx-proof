@@ -37,9 +37,7 @@ class ElementDirective(SphinxDirective):
     def run(self) -> List[Node]:
         env = self.env
         realtyp = self.name.split(":")[1]
-        countertyp = realtyp
-        if env.config.proof_uniform_numbering:
-            countertyp = "theorem"
+        countertyp = env.config.prf_realtyp_to_countertyp[realtyp]
         serial_no = env.new_serialno()
         if not hasattr(env, "proof_list"):
             env.proof_list = {}

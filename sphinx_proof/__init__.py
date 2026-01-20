@@ -78,10 +78,31 @@ def copy_asset_files(app: Sphinx, exc: Union[bool, Exception]):
             copy_asset(path, str(Path(app.outdir).joinpath("_static").absolute()))
 
 
+
+realtyp_to_countertyp = {
+    "axiom": "axiom",
+    "theorem": "theorem",
+    "lemma": "lemma",
+    "algorithm": "algorithm",
+    "definition": "definition",
+    "remark": "remark",
+    "conjecture": "conjecture",
+    "corollary": "corollary",
+    "criterion": "criterion",
+    "example": "example",
+    "property": "property",
+    "observation": "observation",
+    "proposition": "proposition",
+    "assumption": "assumption",
+    "notation": "notation",
+}
+
+
+
 def setup(app: Sphinx) -> Dict[str, Any]:
 
     app.add_config_value("proof_minimal_theme", False, "html")
-    app.add_config_value("proof_uniform_numbering", False, "env")
+    app.add_config_value("prf_realtyp_to_countertyp", realtyp_to_countertyp, "env")
 
     app.add_css_file("proof.css")
     app.connect("build-finished", copy_asset_files)
