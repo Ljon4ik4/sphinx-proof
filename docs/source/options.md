@@ -34,12 +34,11 @@ Add `proof_minimal_theme = True` to your `conf.py`
 
 ## Shared numbering
 
-By default, each type of theorem has their own numbering and counter.
-This can be changed by setting the option `prf_realtyp_to_countertyp` to a dictionary associating to a prf-type which prf-type's counter it should use.
+By default, each type of (prf-)directive has their own numbering and counter. This can be changed by setting the option `prf_realtyp_to_countertyp` to a dictionary associating to a directive which the counter of which directive it should use.
 
 ### Sphinx Project
 
-In `conf.py`, e.g. to have a shared counter for all prf-types:
+In `conf.py`, e.g. to have a shared counter for all directives:
 
 ```
 prf_realtyp_to_countertyp = {
@@ -60,3 +59,29 @@ prf_realtyp_to_countertyp = {
     "notation": "theorem",
 }
 ```
+
+In the following case, the directives `lemma`, `conjecture`, `corollary` and `proposition` will share the counter with `theorem`, while `axiom` and `assumption` will share the counter with `definition`. All other directives would use their original counter.
+
+
+```
+prf_realtyp_to_countertyp = {
+    "lemma": "theorem",
+    "conjecture": "theorem",
+    "corollary": "theorem",
+    "proposition": "theorem",
+    "axiom": "definition",
+    "assumption": "definition",
+}
+```
+
+````{warning}
+The association of a counter to a directive is not transitive: Let us consider the following configuration:
+```
+prf_realtyp_to_countertyp = {
+    "lemma": "theorem",
+    "conjecture": "lemma",
+}
+```
+The `lemma` and `theorem` directives share a counter, however the `conjecture` directive has a separate counter (the `lemma` counter which is **not** used by `lemma` directives).
+````
+
