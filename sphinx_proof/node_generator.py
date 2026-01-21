@@ -18,7 +18,8 @@ PROOF_TYPE_LIST = [
     "proposition",
     "assumption",
     "notation",
-    "proof",
+    "proof", # Maybe css changes necessary?
+    "exercice", # Maybe css changes necessary
 ]
 
 DEFAULT_NONUMBER_TYPE_LIST = [

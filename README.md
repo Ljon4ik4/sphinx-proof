@@ -16,7 +16,7 @@ New features added:
 - one can manage a list of types which have no number by default (usually only proof) via `nonumber_type_list`
 - one can manage a list of types which are headless (no admonition title) by default (usually only proof) `headless_type_list`
 
-This potentially answers the issues
+This potentially/ partially answers the issues
 - [86](https://github.com/executablebooks/sphinx-proof/issues/86)
 - [64](https://github.com/executablebooks/sphinx-proof/issues/64)
 
@@ -40,7 +40,7 @@ I tried doing this (with an automated coding assistance employed on individual l
 
 - localization to translate the word proof is missing
 - the documentation has not been systematically adapted
-- css styling might differ a little from the previous one and could also be improved
+- css styling might differ a little from the previous one and could also be improved 
 - only existing tests were adapted, no new tests were created
 - Maybe there is a way to add no-number to all envs of a certain kind directly in sphinx, that would make the corresponding option (`nonumber_type_list`) useless and then it should be removed.
 
