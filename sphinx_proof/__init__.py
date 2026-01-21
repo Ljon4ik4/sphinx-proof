@@ -78,7 +78,6 @@ def copy_asset_files(app: Sphinx, exc: Union[bool, Exception]):
             copy_asset(path, str(Path(app.outdir).joinpath("_static").absolute()))
 
 
-
 def setup(app: Sphinx) -> Dict[str, Any]:
 
     app.add_config_value("proof_minimal_theme", False, "html")
