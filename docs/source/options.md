@@ -84,4 +84,3 @@ prf_realtyp_to_countertyp = {
 ```
 The `lemma` and `theorem` directives share a counter, however the `conjecture` directive has a separate counter (the `lemma` counter which is **not** used by `lemma` directives).
 ````
-
