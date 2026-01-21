@@ -20,6 +20,27 @@ from .nodes import proof_node
 logger = logging.getLogger(__name__)
 
 
+
+DEFAULT_REALTYP_TO_COUNTERTYP = {
+    "axiom": "axiom",
+    "theorem": "theorem",
+    "lemma": "lemma",
+    "algorithm": "algorithm",
+    "definition": "definition",
+    "remark": "remark",
+    "conjecture": "conjecture",
+    "corollary": "corollary",
+    "criterion": "criterion",
+    "example": "example",
+    "property": "property",
+    "observation": "observation",
+    "proposition": "proposition",
+    "assumption": "assumption",
+    "notation": "notation",
+}
+
+
+
 class ElementDirective(SphinxDirective):
     """A custom Sphinx Directive"""
 
@@ -37,7 +58,7 @@ class ElementDirective(SphinxDirective):
     def run(self) -> List[Node]:
         env = self.env
         realtyp = self.name.split(":")[1]
-        countertyp = env.config.prf_realtyp_to_countertyp[realtyp]
+        countertyp = env.config.prf_realtyp_to_countertyp.get(realtyp, DEFAULT_REALTYP_TO_COUNTERTYP[realtyp])
         serial_no = env.new_serialno()
         if not hasattr(env, "proof_list"):
             env.proof_list = {}

@@ -35,7 +35,7 @@ Add `proof_minimal_theme = True` to your `conf.py`
 ## Shared numbering
 
 By default, each type of theorem has their own numbering and counter.
-This can be changed to a common counter by setting the option `prf_realtyp_to_countertyp` to a dictionary associating to each prf-type which prf-type's counter it should use.
+This can be changed by setting the option `prf_realtyp_to_countertyp` to a dictionary associating to a prf-type which prf-type's counter it should use.
 
 ### Sphinx Project
 
