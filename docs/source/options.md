@@ -76,11 +76,13 @@ prf_realtyp_to_countertyp = {
 
 ````{warning}
 The association of a counter to a directive is not transitive: Let us consider the following configuration:
+
 ```
 prf_realtyp_to_countertyp = {
     "lemma": "theorem",
     "conjecture": "lemma",
 }
 ```
+
 The `lemma` and `theorem` directives share a counter, however the `conjecture` directive has a separate counter (the `lemma` counter which is **not** used by `lemma` directives).
 ````
